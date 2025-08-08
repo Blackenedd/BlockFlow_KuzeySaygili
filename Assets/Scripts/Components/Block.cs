@@ -6,6 +6,9 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     [SerializeField] private int colorIndex;
+    [SerializeField] private int blockHeight;
+    [SerializeField] private int blockWitdh;
+
     private Outline _outline;
     private Rigidbody _rigidbody;
     private Renderer _renderer;

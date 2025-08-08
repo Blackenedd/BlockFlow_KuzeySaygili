@@ -96,6 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorIndex: 0
+  blockHeight: 1
+  blockWitdh: 1
 --- !u!1001 &9016555464559525260
 PrefabInstance:
   m_ObjectHideFlags: 0

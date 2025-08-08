@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorIndex: 0
+  blockHeight: 3
+  blockWitdh: 2
 --- !u!54 &188776762088223092
 Rigidbody:
   m_ObjectHideFlags: 0
