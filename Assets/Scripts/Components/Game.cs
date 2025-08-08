@@ -43,7 +43,7 @@ public class Game : MonoBehaviour
         if (!clicking) return;
 
         Ray ray;
-        ray = Camera.main.ScreenPointToRay(input.mousePosition.position);
+        ray = CameraManager.instance.cam.ScreenPointToRay(input.mousePosition.position);
         Physics.Raycast(ray, out hit, RaycastSettings);
 
         if (hit.collider != null)
