@@ -15055,28 +15055,22 @@ MonoBehaviour:
     gridWidth: 5
     gridHeight: 5
     walls:
-    - orderIndex: 0
-      lenght: 1
-      color: 1
     - orderIndex: 5
       lenght: 2
       color: 2
-    - orderIndex: 9
-      lenght: 1
-      color: 3
     - orderIndex: 12
-      lenght: 1
+      lenght: 2
       color: 3
     - orderIndex: 18
       lenght: 1
-      color: 3
+      color: 1
+    - orderIndex: 1
+      lenght: 2
+      color: 1
     blocks:
     - blockIndex: 1
       blockColor: 1
       worldPosition: {x: 0, y: 0}
-    - blockIndex: 5
-      blockColor: 2
-      worldPosition: {x: 2, y: 1}
     - blockIndex: 2
       blockColor: 2
       worldPosition: {x: 3, y: 1}

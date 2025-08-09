@@ -5,10 +5,79 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     [SerializeField] private List<GameObject> lenghts;
-    private Renderer _renderer;
 
+    private BoxCollider _collider;
+    private Renderer _renderer;
     private Transform _arrow;
     private Side _side;
+    private int _color;
+    private int _lenght;
+
+    private Block currentBlock;
+
+    Vector3 blockPos = Vector3.zero;
+    Vector3 wallPos = Vector3.zero;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (currentBlock == null && other.CompareTag("Block"))
+        {
+            Block b = other.GetComponent<Block>();
+            if(b.GetColor() == _color)
+            {
+                currentBlock = b;
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(currentBlock != null && other.gameObject == currentBlock.gameObject)
+        {
+            currentBlock = null;
+        }
+    }
+
+    private void Update()
+    {
+        CheckFits();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(currentBlock != null)
+        {
+            Gizmos.color = Color.red;
+            Vector3 blockCenter = currentBlock.GetCenter();
+            Vector3 myCenter = _collider.bounds.center;
+
+            Gizmos.DrawSphere(blockCenter, 0.1f);
+            Gizmos.DrawSphere(myCenter, 0.1f);
+        }
+    }
+
+    private void CheckFits()
+    {
+        if(currentBlock != null)
+        {
+            Vector3 blockCenter = currentBlock.GetCenter();
+            Vector3 myCenter = _collider.bounds.center;
+
+            float distance = Mathf.Infinity;
+
+            switch (_side)
+            {
+                case Side.left: case Side.right: distance = Mathf.Abs(blockCenter.z - myCenter.z); break;
+                case Side.up: case Side.down: distance = Mathf.Abs(blockCenter.x - myCenter.x); break;
+            }
+
+            if (distance < 0.1f) DestoryBlock();
+        }
+    }
+    private void DestoryBlock()
+    {
+        currentBlock.OnAccepted();
+        currentBlock = null;
+    }
 
     public int GetSideInformation()
     {
@@ -24,17 +93,27 @@ public class Wall : MonoBehaviour
         {
             lenghts[0].SetActive(false);
             lenghts[lenghtIndex].SetActive(true);
+            _lenght = lenghtIndex;
 
             _renderer = lenghts[lenghtIndex].GetComponent<Renderer>();
             _arrow = _renderer.GetComponentInChildren<SpriteRenderer>().transform;
 
+            _collider = gameObject.AddComponent<BoxCollider>();
+            _collider.isTrigger = true;
+            _collider.size = Vector3.right * 1.5f + Vector3.up + Vector3.forward * lenghtIndex;
+            _collider.center = Vector3.forward * 0.5f * lenghtIndex + Vector3.up * 0.5f;
+
             switch (_side)
             {
-                case Side.down :
-                case Side.right : _arrow.rotation *= Quaternion.Euler(0, 0, 180); break;
+                case Side.down : case Side.right : _arrow.rotation *= Quaternion.Euler(0, 0, 180);break;
+                case Side.up : case Side.left : _collider.center += Vector3.right * 0.5f;break;
             }
         }
-        if(colorIndex != -1) _renderer.material = Resources.Load<Material>("colors/" + colorIndex);
+        if (colorIndex != -1)
+        {
+            _renderer.material = Resources.Load<Material>("colors/" + colorIndex);
+            _color = colorIndex;
+        }
     }
     public void Close(int side)
     {
