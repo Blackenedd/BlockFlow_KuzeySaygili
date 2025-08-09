@@ -60,6 +60,27 @@ public class Block : MonoBehaviour
         direction.y = 0;
         _rigidbody.velocity = direction * speed;
     }
+    public Vector3 GetXZCoverage()
+    {
+        if (colliders == null || colliders.Count == 0)
+            return Vector2.zero;
+
+        Vector3 min = colliders[0].bounds.min;
+        Vector3 max = colliders[0].bounds.max;
+
+        foreach (var col in colliders)
+        {
+            Bounds b = col.bounds;
+            min = Vector3.Min(min, b.min);
+            max = Vector3.Max(max, b.max);
+        }
+
+        float totalX = max.x - min.x;
+        float totalZ = max.z - min.z;
+
+        return new Vector3(totalX, 0,totalZ);
+    }
+
     public Vector3 GetCenter()
     {
         if (colliders == null || colliders.Count == 0)

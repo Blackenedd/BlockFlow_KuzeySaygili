@@ -7851,7 +7851,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 100
-  field of view: 45
+  field of view: 60
   orthographic: 0
   orthographic size: 5.96
   m_Depth: -1
@@ -15052,8 +15052,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   information:
-    gridWidth: 5
-    gridHeight: 5
+    gridWidth: 7
+    gridHeight: 7
     walls:
     - orderIndex: 5
       lenght: 2
@@ -15067,6 +15067,9 @@ MonoBehaviour:
     - orderIndex: 1
       lenght: 2
       color: 1
+    - orderIndex: 23
+      lenght: 3
+      color: 4
     blocks:
     - blockIndex: 1
       blockColor: 1
@@ -15077,6 +15080,12 @@ MonoBehaviour:
     - blockIndex: 4
       blockColor: 3
       worldPosition: {x: 3, y: 3}
+    - blockIndex: 5
+      blockColor: 4
+      worldPosition: {x: 5, y: 5}
+    - blockIndex: 2
+      blockColor: 1
+      worldPosition: {x: 0, y: 5}
 --- !u!1 &1841958374
 GameObject:
   m_ObjectHideFlags: 0

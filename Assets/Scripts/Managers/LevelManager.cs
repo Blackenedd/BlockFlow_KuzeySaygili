@@ -37,6 +37,8 @@ public class LevelManager : MonoBehaviour
             if (x.lenght > 2) walls[x.orderIndex + 2].Close(walls[x.orderIndex].GetSideInformation());
         });
 
+        CameraManager.instance.SetOffset(level.information.gridWidth / 2, 0, level.information.gridHeight  / 2);
+
     }
 
     private void SpawnBlock(int index, int color,Vector2 worldPosition)

@@ -62,15 +62,31 @@ public class Wall : MonoBehaviour
             Vector3 blockCenter = currentBlock.GetCenter();
             Vector3 myCenter = _collider.bounds.center;
 
+            Vector3 blockCoverage = currentBlock.GetXZCoverage();
+            Vector3 myCoverage = _collider.bounds.size;
+
             float distance = Mathf.Infinity;
+            float requiredDistance = 0.1f;
 
             switch (_side)
             {
-                case Side.left: case Side.right: distance = Mathf.Abs(blockCenter.z - myCenter.z); break;
-                case Side.up: case Side.down: distance = Mathf.Abs(blockCenter.x - myCenter.x); break;
+                case Side.left: case Side.right:
+                    if (blockCoverage.z <= myCoverage.z)
+                    {
+                        distance = Mathf.Abs(blockCenter.z - myCenter.z);
+                        requiredDistance = Mathf.Abs(myCoverage.z - blockCoverage.z) * 0.5f;
+                    }
+                break;
+                case Side.up: case Side.down:
+                    if (blockCoverage.x <= myCoverage.x)
+                    {
+                        distance = Mathf.Abs(blockCenter.x - myCenter.x);
+                        requiredDistance = Mathf.Abs(myCoverage.x - blockCoverage.x) * 0.5f;
+                    }
+                break;
             }
 
-            if (distance < 0.1f) DestoryBlock();
+            if (distance < requiredDistance) DestoryBlock();
         }
     }
     private void DestoryBlock()
