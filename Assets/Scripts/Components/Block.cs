@@ -53,16 +53,16 @@ public class Block : MonoBehaviour
     {
         Game.instance.OnAccepted(this);
         Vector3 lenght = GetXZCoverage();
+        Vector3 targetPoint = Vector3.zero;
         OnRealese();
         colliders.ForEach(x => x.enabled = false);
-        
 
         switch (direction)
         {
-            case 0: transform.DOMoveZ(transform.position.z - (lenght.z + 0.25f), 0.5f).SetEase(Ease.Linear); break;
-            case 1: transform.DOMoveZ(transform.position.z + (lenght.z + 0.25f), 0.5f).SetEase(Ease.Linear); break;
-            case 2: transform.DOMoveX(transform.position.x - (lenght.x + 0.25f), 0.5f).SetEase(Ease.Linear); break;
-            case 3: transform.DOMoveX(transform.position.x + (lenght.x + 0.25f), 0.5f).SetEase(Ease.Linear); break;
+            case 0: transform.DOMoveZ(transform.position.z - (lenght.z + 0.35f), 0.5f).SetEase(Ease.Linear); break;
+            case 1: transform.DOMoveZ(transform.position.z + (lenght.z + 0.35f), 0.5f).SetEase(Ease.Linear); break;
+            case 2: transform.DOMoveX(transform.position.x - (lenght.x + 0.35f), 0.5f).SetEase(Ease.Linear); break;
+            case 3: transform.DOMoveX(transform.position.x + (lenght.x + 0.35f), 0.5f).SetEase(Ease.Linear); break;
         }
     }
     private Vector3 direction;
