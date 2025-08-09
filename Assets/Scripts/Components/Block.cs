@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
+using Kuzey;
 
 public class Block : MonoBehaviour
 {
@@ -47,9 +49,21 @@ public class Block : MonoBehaviour
         _rigidbody.isKinematic = true;
         transform.position = RoundPosition(transform.position);
     }
-    public void OnAccepted()
+    public void OnAccepted(int direction)
     {
-        gameObject.SetActive(false);
+        Game.instance.OnAccepted(this);
+        Vector3 lenght = GetXZCoverage();
+        OnRealese();
+        colliders.ForEach(x => x.enabled = false);
+        
+
+        switch (direction)
+        {
+            case 0: transform.DOMoveZ(transform.position.z - (lenght.z + 0.25f), 0.5f).SetEase(Ease.Linear); break;
+            case 1: transform.DOMoveZ(transform.position.z + (lenght.z + 0.25f), 0.5f).SetEase(Ease.Linear); break;
+            case 2: transform.DOMoveX(transform.position.x - (lenght.x + 0.25f), 0.5f).SetEase(Ease.Linear); break;
+            case 3: transform.DOMoveX(transform.position.x + (lenght.x + 0.25f), 0.5f).SetEase(Ease.Linear); break;
+        }
     }
     private Vector3 direction;
     private float speed = 5f;

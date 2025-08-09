@@ -47,11 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a325bcb5da3a74458b3eb45fecc4adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    left: 1
-    right: 1
-    down: 0
-    up: 0
 --- !u!54 &1437005669169652864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108,6 +103,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5968845017461503570}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d18f3fea169524026abdbae4a1e21d79, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d18f3fea169524026abdbae4a1e21d79, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

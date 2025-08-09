@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Wall : MonoBehaviour
 {
@@ -91,8 +92,10 @@ public class Wall : MonoBehaviour
     }
     private void DestoryBlock()
     {
-        currentBlock.OnAccepted();
+        currentBlock.OnAccepted((int)_side);
         currentBlock = null;
+        transform.DOComplete();
+        transform.DOMoveY(transform.position.y - 1, 0.5f).SetEase(Ease.OutQuart).SetLoops(2, LoopType.Yoyo);
     }
 
     public int GetSideInformation()
@@ -116,7 +119,7 @@ public class Wall : MonoBehaviour
 
             _collider = gameObject.AddComponent<BoxCollider>();
             _collider.isTrigger = true;
-            _collider.size = Vector3.right * 1.5f + Vector3.up + Vector3.forward * lenghtIndex;
+            _collider.size = Vector3.right * 1f + Vector3.up + Vector3.forward * lenghtIndex;
             _collider.center = Vector3.forward * 0.5f * lenghtIndex + Vector3.up * 0.5f;
 
             switch (_side)

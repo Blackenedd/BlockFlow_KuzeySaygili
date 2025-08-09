@@ -6,6 +6,13 @@ public class Game : MonoBehaviour
 {
     private InputManager input;
 
+    public static Game instance;
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
     private void Start()
     {
         input = InputManager.instance;
@@ -28,6 +35,14 @@ public class Game : MonoBehaviour
 
         raycastSurface.SetActive(false);
     }
+    public void OnAccepted(Block acceptedBlock)
+    {
+        if(selectedBlock != null && selectedBlock == acceptedBlock)
+        {
+            selectedBlock = null;
+            clicking = false;
+        }
+    }
 
 
     private bool clicking = false;
@@ -38,6 +53,7 @@ public class Game : MonoBehaviour
     public LayerMask RaycastSettings;
     public GameObject raycastSurface;
     private RaycastHit hit;
+
     private void FixedUpdate()
     {
         if (!clicking) return;
