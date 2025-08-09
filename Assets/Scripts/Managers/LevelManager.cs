@@ -4,15 +4,45 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private List<Block> blocks = new List<Block>();
+    private List<Wall> walls = new List<Wall>();
+
+    public Level level;
+
+    private string BLOCK_DATA = "blocks/";
+
+    [SerializeField] private Transform blockContainer;
+
+    private void Start()
     {
-        
+        ConstructLevel(level);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ConstructLevel(Level level)
     {
-        
+        GridManager.instance.GenerateGrid(level.information.gridWidth, level.information.gridHeight);
+
+        walls = GridManager.instance.GetWalls();
+
+        level.information.blocks.ForEach(x =>
+        {
+            SpawnBlock(x.blockIndex, x.blockColor, x.worldPosition);
+        });
+
+        level.information.walls.ForEach(x =>
+        {
+            walls[x.orderIndex].Construct(x.lenght, x.color);
+
+            if (x.lenght > 1) walls[x.orderIndex + 1].Close();
+            if (x.lenght > 2) walls[x.orderIndex + 2].Close();
+        });
+
+    }
+
+    private void SpawnBlock(int index, int color,Vector2 worldPosition)
+    {
+        Block block = Instantiate(Resources.Load<Block>(BLOCK_DATA + index),blockContainer);
+        block.Construct(color, worldPosition);
+        blocks.Add(block);
     }
 }

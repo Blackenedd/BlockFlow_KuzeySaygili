@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    [SerializeField] private int colorIndex;
     [SerializeField] private int blockHeight;
     [SerializeField] private int blockWitdh;
 
@@ -14,14 +13,18 @@ public class Block : MonoBehaviour
     private Renderer _renderer;
     private void Awake()
     {
-        Construct();
+        Init();
     }
-    private void Construct()
+    private void Init()
     {
         _outline = GetComponentInChildren<Outline>(); _outline.enabled = false;
         _rigidbody = GetComponent<Rigidbody>();
         _renderer = GetComponentInChildren<Renderer>();
-        _renderer.material = Resources.Load<Material>("colors/" + colorIndex);
+    }
+    public void Construct(int color,Vector2 globalPosition)
+    {
+        _renderer.material = Resources.Load<Material>("colors/" + color);
+        transform.position = Vector3.forward * globalPosition.y + Vector3.right * globalPosition.x;
     }
     public void OnSelected()
     {
@@ -32,12 +35,14 @@ public class Block : MonoBehaviour
     public void OnRealese()
     {
         _outline.enabled = false;
-        _rigidbody.isKinematic = true;
         _rigidbody.velocity = Vector3.zero;
+        _rigidbody.isKinematic = true;
         transform.position = RoundPosition(transform.position);
     }
+
     private Vector3 direction;
     private float speed = 5f;
+
     public void Move(Vector3 position)
     {
         direction = position - transform.position;
