@@ -9,7 +9,7 @@ public class GridManager : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject cornerPrefab;
 
-    private float cellSize = 1f;
+    
 
     [Header("Parents")]
     public Transform cellParent;
@@ -18,6 +18,9 @@ public class GridManager : MonoBehaviour
     public Transform colliderParent;
 
     public static GridManager instance;
+
+    private float cellSize = 1f;
+    private List<Wall> walls = new List<Wall>();
 
     private void Awake()
     {
@@ -61,7 +64,7 @@ public class GridManager : MonoBehaviour
 
     public List<Wall> GetWalls()
     {
-        return wallParent.GetComponentsInChildren<Wall>().ToList();
+        return walls;
     }
 
     void SpawnWalls()
@@ -70,33 +73,40 @@ public class GridManager : MonoBehaviour
         float maxZ = (_height - 1) * cellSize;
         float half = cellSize / 2f;
 
+        Wall wall;
+
         // Alt kenar (yatay)
         for (int x = 0; x < _width; x++)
-            Instantiate(wallPrefab,
-                new Vector3(x * cellSize - half, 0, - half),
-                Quaternion.Euler(0, 90, 0),
-                wallParent);
+        {
+            wall = Instantiate(wallPrefab, new Vector3(x * cellSize - half, 0, -half), Quaternion.Euler(0, 90, 0), wallParent).GetComponent<Wall>();
+            wall.UpdateSideInformation(0);
+            walls.Add(wall);
+        }
 
         // Üst kenar (yatay)
         for (int x = 0; x < _width; x++)
-            Instantiate(wallPrefab,
-                new Vector3(x * cellSize -half, 0, maxZ + 0.8f),
-                Quaternion.Euler(0, 90, 0),
-                wallParent);
+        {
+            wall = Instantiate(wallPrefab,new Vector3(x * cellSize - half, 0, maxZ + 0.8f),Quaternion.Euler(0, 90, 0),wallParent).GetComponent<Wall>();
+            wall.UpdateSideInformation(1);
+            walls.Add(wall);
+        }
 
         // Sol kenar (dikey)
         for (int z = 0; z < _height; z++)
-            Instantiate(wallPrefab,
-                new Vector3(-0.8f, 0, z * cellSize - half),
-                Quaternion.identity,
-                wallParent);
+        {
+            wall = Instantiate(wallPrefab, new Vector3(-0.8f, 0, z * cellSize - half), Quaternion.identity, wallParent).GetComponent<Wall>();
+            wall.UpdateSideInformation(2);
+            walls.Add(wall);
+        }
 
         // Sağ kenar (dikey)
         for (int z = 0; z < _height; z++)
-            Instantiate(wallPrefab,
-                new Vector3(maxX + half, 0, z * cellSize - half),
-                Quaternion.identity,
-                wallParent);
+        {
+            wall = Instantiate(wallPrefab, new Vector3(maxX + half, 0, z * cellSize - half), Quaternion.identity, wallParent).GetComponent<Wall>();
+            wall.UpdateSideInformation(3);
+            walls.Add(wall);
+        }
+        
     }
 
     void SpawnCorners()

@@ -15064,6 +15064,12 @@ MonoBehaviour:
     - orderIndex: 9
       lenght: 1
       color: 3
+    - orderIndex: 12
+      lenght: 1
+      color: 3
+    - orderIndex: 18
+      lenght: 1
+      color: 3
     blocks:
     - blockIndex: 1
       blockColor: 1

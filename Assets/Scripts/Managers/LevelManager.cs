@@ -33,8 +33,8 @@ public class LevelManager : MonoBehaviour
         {
             walls[x.orderIndex].Construct(x.lenght, x.color);
 
-            if (x.lenght > 1) walls[x.orderIndex + 1].Close();
-            if (x.lenght > 2) walls[x.orderIndex + 2].Close();
+            if (x.lenght > 1) walls[x.orderIndex + 1].Close(walls[x.orderIndex].GetSideInformation());
+            if (x.lenght > 2) walls[x.orderIndex + 2].Close(walls[x.orderIndex].GetSideInformation());
         });
 
     }
