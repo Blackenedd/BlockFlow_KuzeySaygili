@@ -119,7 +119,7 @@ public class Wall : MonoBehaviour
 
             _collider = gameObject.AddComponent<BoxCollider>();
             _collider.isTrigger = true;
-            _collider.size = Vector3.right * 1f + Vector3.up + Vector3.forward * lenghtIndex;
+            _collider.size = Vector3.right * 0.7f + Vector3.up + Vector3.forward * lenghtIndex;
             _collider.center = Vector3.forward * 0.5f * lenghtIndex + Vector3.up * 0.5f;
 
             switch (_side)
