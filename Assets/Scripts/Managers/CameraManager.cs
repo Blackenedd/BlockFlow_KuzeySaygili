@@ -113,17 +113,17 @@ public class CameraManager : MonoBehaviour
         positionTarget = positionT;
         rotationTarget = rotationT == null ? positionT : rotationT;
     }
-    public void SetOffset(float ofx, float ofy, float ofz)
+    public void SetOffset(Vector3 offset)
     {
-        xOffset = ofx;
-        yOffset = ofy;
-        zOffset = ofz;
+        xOffset = offset.x;
+        yOffset = offset.y;
+        zOffset = offset.z;
     }
-    public void SetValues(float x, float y, float z)
+    public void SetValues(Vector3 settings)
     {
-        xDistance = x;
-        yDistance = y;
-        zDistance = z;
+        xDistance = settings.x;
+        yDistance = settings.y;
+        zDistance = settings.z;
     }
     public void SetValues(float x, float y, float z, float angle)
     {

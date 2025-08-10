@@ -1,18 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Level Booleans")]
+    public bool autoLevel;
+    [Header("Level'S"), Space(5)]
+    public int level = -1;
+    public int levelCount = 10;
+    public int levelLoopFrom = 3;
+
+    public List<Level> levels;
+
+    [Header("CURRENCY"), Space(5)]
+    public int money = 0;
+
+    public LevelManager levelManager;
+
+    #region Singleton
+    public static GameManager instance = null;
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            GetDependencies();
+        }
+    }
+    #endregion
+
+    private void Start()
+    {
+        int levelIndex = level;
+        while (levelIndex > levelCount) levelIndex = levelIndex - levelCount + (levelLoopFrom - 1);
+
+        levelManager.ConstructLevel(levels[levelIndex - 1]);
+    }
+    private void GetDependencies()
+    {
+        level = DataManager.instance.level;
+        money = DataManager.instance.money;
     }
 
-    // Update is called once per frame
-    void Update()
+    #region DataOperations
+    public void AddMoney(int amount)
     {
-        
+        money += amount;
+        DataManager.instance.SetMoney(money);
     }
+
+    public void LevelUp(bool complete)
+    {
+        if(complete) DataManager.instance.SetLevel(++level);
+    }
+    #endregion
+
+    #region SceneOperations
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OpenScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void OpenScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+    #endregion
 }

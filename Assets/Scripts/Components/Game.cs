@@ -24,6 +24,10 @@ public class Game : MonoBehaviour
     private void OnGameFinished(bool value)
     {
         stopInput = true;
+        if (!value)
+        {
+            OnRealese();
+        }
     }
     private void OnClick()
     {
@@ -43,6 +47,7 @@ public class Game : MonoBehaviour
     }
     public void OnAccepted(Block acceptedBlock)
     {
+        AudioManager.instance.PlayBox();
         LevelManager.instance.OnProgress();
         clicking = false;
 
@@ -81,6 +86,7 @@ public class Game : MonoBehaviour
                     selectedBlock = hit.collider.GetComponent<Block>();
                     selectedBlock.OnSelected();
                     raycastSurface.SetActive(true);
+                    AudioManager.instance.PlayClick();
                 }
             }
             else

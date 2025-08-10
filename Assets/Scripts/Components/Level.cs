@@ -12,10 +12,15 @@ public class Level : MonoBehaviour
     {
         public int gridWidth;
         public int gridHeight;
+
         public bool hasTime;
         public int time;
+
         public List<WallData> walls;
         public List<BlockData> blocks;
+
+        public Vector3 cameraSettings;
+        public Vector3 cameraCenter;
     }
     [Serializable]
     public struct BlockData
