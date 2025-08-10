@@ -96,7 +96,7 @@ public class Wall : MonoBehaviour
         currentBlock = null;
 
         transform.DOComplete();
-        transform.DOMoveY(transform.position.y - 1, 0.5f).SetEase(Ease.OutQuart).SetLoops(2, LoopType.Yoyo);
+        transform.DOMoveY(transform.position.y - 1f, 0.5f).SetEase(Ease.OutQuart).SetLoops(2, LoopType.Yoyo);
     }
     public int GetSideInformation()
     {

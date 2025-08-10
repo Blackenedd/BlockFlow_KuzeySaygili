@@ -30,7 +30,7 @@ public class EndPanel : Panel
         activePanel.levelText.text = "LEVEL " + level.ToString();
         activePanel.continueButton.localScale = Vector3.zero;
         activePanel.self.gameObject.SetActive(true);
-        activePanel.continueButton.DOScale(1f, duration).SetEase(Ease.OutBack);
+        activePanel.continueButton.DOScale(1f, duration).SetEase(Ease.OutBack).SetDelay(0.5f);
     }
     private bool win = false;
     private bool started = false;

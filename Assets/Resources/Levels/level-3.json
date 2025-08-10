@@ -2,7 +2,7 @@
     "gridWidth": 7,
     "gridHeight": 7,
     "hasTime": true,
-    "time": 30,
+    "time": 60,
     "walls": [
         {
             "orderIndex": 5,
