@@ -125,6 +125,7 @@ public class Wall : MonoBehaviour
             for(int i = 0; i < lenghtIndex; i++)
             {
                 ParticleTrigger pt = Instantiate(Resources.Load<GameObject>("particle-trigger")).GetComponent<ParticleTrigger>();
+                pt.transform.SetParent(Game.instance.transform);
                 Vector3 position = transform.position + transform.forward * 0.5f + SideToVector() + i * transform.forward;
                 pt.Construct(position, _side);
             }

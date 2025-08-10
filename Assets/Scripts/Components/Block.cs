@@ -7,15 +7,17 @@ using Kuzey;
 
 public class Block : MonoBehaviour
 {
+    public Side lockSide;
     private Outline _outline;
     private Rigidbody _rigidbody;
     private Renderer _renderer;
+    private SpriteRenderer _lock;
 
     private List<BoxCollider> colliders = new List<BoxCollider>();
 
     private int _color;
 
-    private bool _destoryed = false; 
+    private bool _accetped = false;
 
     private void Awake()
     {
@@ -25,11 +27,27 @@ public class Block : MonoBehaviour
     {
         _outline = GetComponentInChildren<Outline>(); _outline.enabled = false;
         _rigidbody = GetComponent<Rigidbody>();
-        _renderer = GetComponentInChildren<Renderer>();
+        _renderer = GetComponentInChildren<MeshRenderer>();
+        _lock = GetComponentInChildren<SpriteRenderer>();
+        _lock.enabled = false;
         colliders = GetComponents<BoxCollider>().ToList();
     }
-    public void Construct(int color,Vector2 globalPosition)
+    public void Construct(int color, Vector2 globalPosition, bool l)
     {
+        if (l)
+        {
+            _lock.enabled = true;
+            switch (lockSide)
+            {
+                case Side.horizontal:
+                    _rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
+                    break;
+                case Side.vertical:
+                    _rigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX;
+                    break;
+            }
+        }
+
         _color = color;
         _renderer.material = Resources.Load<Material>("colors/" + color);
         transform.position = Vector3.forward * globalPosition.y + Vector3.right * globalPosition.x;
@@ -37,10 +55,6 @@ public class Block : MonoBehaviour
     public int GetColor()
     {
         return _color;
-    }
-    public bool isDestoryed()
-    {
-        return _destoryed;
     }
     public void OnSelected()
     {
@@ -51,15 +65,15 @@ public class Block : MonoBehaviour
     public void OnRealese()
     {
         _outline.enabled = false;
-        //_rigidbody.velocity = Vector3.zero;
         _rigidbody.isKinematic = true;
         transform.position = RoundPosition(transform.position);
     }
     public void OnAccepted(int direction)
     {
-        if (_destoryed) return;
+        if (_accetped) return;
 
-        _destoryed = true;
+        _accetped = true;
+
         Game.instance.OnAccepted(this);
         Vector3 lenght = GetXZCoverage();
         Vector3 targetPoint = Vector3.zero;
@@ -71,10 +85,10 @@ public class Block : MonoBehaviour
 
         switch (direction)
         {
-            case 0: transform.DOMoveZ(transform.position.z - (lenght.z + 0.35f), 0.5f).SetEase(Ease.Linear); break;
-            case 1: transform.DOMoveZ(transform.position.z + (lenght.z + 0.35f), 0.5f).SetEase(Ease.Linear); break;
-            case 2: transform.DOMoveX(transform.position.x - (lenght.x + 0.35f), 0.5f).SetEase(Ease.Linear); break;
-            case 3: transform.DOMoveX(transform.position.x + (lenght.x + 0.35f), 0.5f).SetEase(Ease.Linear); break;
+            case 0: transform.DOMoveZ(transform.position.z - (lenght.z + 0.4f), 0.5f).SetEase(Ease.Linear); break;
+            case 1: transform.DOMoveZ(transform.position.z + (lenght.z + 0.4f), 0.5f).SetEase(Ease.Linear); break;
+            case 2: transform.DOMoveX(transform.position.x - (lenght.x + 0.4f), 0.5f).SetEase(Ease.Linear); break;
+            case 3: transform.DOMoveX(transform.position.x + (lenght.x + 0.4f), 0.5f).SetEase(Ease.Linear); break;
         }
     }
     private Vector3 direction;
@@ -145,13 +159,9 @@ public class Block : MonoBehaviour
             Mathf.Round(v.y),
             Mathf.Round(v.z));
     }
-
-    [System.Serializable]
-    public struct BlockData
+    public enum Side
     {
-        public int left;
-        public int right;
-        public int down;
-        public int up;
+        horizontal,
+        vertical
     }
 }

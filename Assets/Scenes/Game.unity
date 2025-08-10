@@ -12788,6 +12788,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[0].Lock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[1].Lock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[2].Lock
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[3].Lock
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[4].Lock
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[5].Lock
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[6].Lock
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[1].worldPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[1].worldPosition.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
+      propertyPath: information.blocks.Array.data[3].worldPosition.y
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

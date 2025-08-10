@@ -17,7 +17,7 @@ public class ParticleTrigger : MonoBehaviour
         if (other.CompareTag("Block"))
         {
             Block b = other.GetComponent<Block>();
-            if(b.isDestoryed()) SpawnParticle(Resources.Load<Material>("colors/" + b.GetColor()));
+            SpawnParticle(Resources.Load<Material>("colors/" + b.GetColor()));
         }
     }
 

@@ -21,6 +21,7 @@ public class Level : MonoBehaviour
         public int blockIndex;
         public int blockColor;
         public Vector2 worldPosition;
+        public bool Lock;
     }
     [Serializable]
     public struct WallData

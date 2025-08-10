@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
 
         level.information.blocks.ForEach(x =>
         {
-            SpawnBlock(x.blockIndex, x.blockColor, x.worldPosition);
+            SpawnBlock(x.blockIndex, x.blockColor, x.worldPosition,x.Lock);
         });
 
         level.information.walls.ForEach(x =>
@@ -41,10 +41,10 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    private void SpawnBlock(int index, int color,Vector2 worldPosition)
+    private void SpawnBlock(int index, int color,Vector2 worldPosition,bool l)
     {
         Block block = Instantiate(Resources.Load<Block>(BLOCK_DATA + index),blockContainer);
-        block.Construct(color, worldPosition);
+        block.Construct(color, worldPosition,l);
         blocks.Add(block);
     }
 }
