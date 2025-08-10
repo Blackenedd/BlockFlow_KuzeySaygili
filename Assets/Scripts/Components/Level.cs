@@ -12,6 +12,8 @@ public class Level : MonoBehaviour
     {
         public int gridWidth;
         public int gridHeight;
+        public bool hasTime;
+        public int time;
         public List<WallData> walls;
         public List<BlockData> blocks;
     }

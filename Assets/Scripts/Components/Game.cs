@@ -5,7 +5,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     private InputManager input;
-
+    private bool stopInput = false;
     public static Game instance;
 
     private void Awake()
@@ -16,8 +16,14 @@ public class Game : MonoBehaviour
     private void Start()
     {
         input = InputManager.instance;
+
         input.onPress.AddListener(OnClick);
         input.onRelease.AddListener(OnRealese);
+        LevelManager.instance.endGameEvent.AddListener(OnGameFinished);
+    }
+    private void OnGameFinished(bool value)
+    {
+        stopInput = true;
     }
     private void OnClick()
     {
@@ -37,10 +43,13 @@ public class Game : MonoBehaviour
     }
     public void OnAccepted(Block acceptedBlock)
     {
-        if(selectedBlock != null && selectedBlock == acceptedBlock)
+        LevelManager.instance.OnProgress();
+        clicking = false;
+
+        if (selectedBlock != null && selectedBlock == acceptedBlock)
         {
             selectedBlock = null;
-            clicking = false;
+            
         }
     }
 
@@ -56,6 +65,7 @@ public class Game : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (stopInput) return;
         if (!clicking) return;
 
         Ray ray;
