@@ -8,16 +8,16 @@ public class GridManager : MonoBehaviour
     public GameObject cellPrefab;
     public GameObject wallPrefab;
     public GameObject cornerPrefab;
-    public GameObject whitePrefab;
-
-    
 
     [Header("Parents")]
     public Transform cellParent;
     public Transform wallParent;
     public Transform cornerParent;
     public Transform colliderParent;
-    public Transform whiteParent;
+
+    [Header("Border")]
+    public Transform upBorder;
+    public Transform rightBorder;
 
     public static GridManager instance;
 
@@ -62,6 +62,8 @@ public class GridManager : MonoBehaviour
         SpawnCorners();
 
         BuildFrameColliders();
+
+        UpdateBorders();
     }
 
     public List<Wall> GetWalls()
@@ -164,11 +166,10 @@ public class GridManager : MonoBehaviour
         BoxCollider col = wallObj.AddComponent<BoxCollider>();
         col.size = size;
     }
-    private void CreateWhiteBorder(Vector3 position, Vector3 size)
+
+    private void UpdateBorders()
     {
-        GameObject whiteBorder = Instantiate(whitePrefab);
-        whiteBorder.transform.SetParent(whiteParent);
-        whiteBorder.transform.position = position;
-        whiteBorder.transform.localScale = size;
+        upBorder.position = new Vector3(upBorder.position.x, upBorder.position.y, _height + 1.75f);
+        rightBorder.position = new Vector3(_width + 1.75f, rightBorder.position.y,rightBorder.position.z);
     }
 }

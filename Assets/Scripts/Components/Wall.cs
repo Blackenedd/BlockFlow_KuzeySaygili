@@ -93,40 +93,10 @@ public class Wall : MonoBehaviour
     private void DestoryBlock()
     {
         currentBlock.OnAccepted((int)_side);
-        Vector3 xz = currentBlock.GetXZCoverage();
         currentBlock = null;
 
         transform.DOComplete();
         transform.DOMoveY(transform.position.y - 1, 0.5f).SetEase(Ease.OutQuart).SetLoops(2, LoopType.Yoyo);
-
-        Transform pt = Instantiate(Resources.Load<Transform>("particles/destory")).transform;
-
-        pt.transform.position = _collider.bounds.center + Vector3.up + SideToVector() * 0.3f;
-        pt.transform.rotation = SideToQuatrenion();
-    }
-    public Vector3 SideToVector()
-    {
-        switch (_side)
-        {
-            case Side.down : return Vector3.back;
-            case Side.up : return Vector3.forward;
-            case Side.left : return Vector3.left;
-            case Side.right : return Vector3.right;
-        }
-
-        return Vector3.zero;
-    }
-    public Quaternion SideToQuatrenion()
-    {
-        switch (_side)
-        {
-            case Side.down: return Quaternion.Euler(0,180,0);
-            case Side.up: return Quaternion.identity;
-            case Side.left: return Quaternion.Euler(0, -90, 0);
-            case Side.right: return Quaternion.Euler(0, 90, 0);
-        }
-
-        return Quaternion.identity;
     }
     public int GetSideInformation()
     {
@@ -152,6 +122,12 @@ public class Wall : MonoBehaviour
             _collider.size = Vector3.right * 0.7f + Vector3.up + Vector3.forward * lenghtIndex;
             _collider.center = Vector3.forward * 0.5f * lenghtIndex + Vector3.up * 0.5f;
 
+            for(int i = 0; i < lenghtIndex; i++)
+            {
+                ParticleTrigger pt = Instantiate(Resources.Load<GameObject>("particle-trigger")).GetComponent<ParticleTrigger>();
+                Vector3 position = transform.position + transform.forward * 0.5f + SideToVector() + i * transform.forward;
+                pt.Construct(position, _side);
+            }
             switch (_side)
             {
                 case Side.down : case Side.right : _arrow.rotation *= Quaternion.Euler(0, 0, 180);break;
@@ -163,6 +139,18 @@ public class Wall : MonoBehaviour
             _renderer.material = Resources.Load<Material>("colors/" + colorIndex);
             _color = colorIndex;
         }
+    }
+    public Vector3 SideToVector()
+    {
+        switch (_side)
+        {
+            case Side.down: return Vector3.back;
+            case Side.up: return Vector3.forward;
+            case Side.left: return Vector3.left;
+            case Side.right: return Vector3.right;
+        }
+
+        return Vector3.zero;
     }
     public void Close(int side)
     {

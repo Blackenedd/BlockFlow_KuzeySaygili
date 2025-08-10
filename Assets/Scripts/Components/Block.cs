@@ -15,6 +15,8 @@ public class Block : MonoBehaviour
 
     private int _color;
 
+    private bool _destoryed = false; 
+
     private void Awake()
     {
         Init();
@@ -36,6 +38,10 @@ public class Block : MonoBehaviour
     {
         return _color;
     }
+    public bool isDestoryed()
+    {
+        return _destoryed;
+    }
     public void OnSelected()
     {
         _outline.enabled = true;
@@ -45,17 +51,23 @@ public class Block : MonoBehaviour
     public void OnRealese()
     {
         _outline.enabled = false;
-        _rigidbody.velocity = Vector3.zero;
+        //_rigidbody.velocity = Vector3.zero;
         _rigidbody.isKinematic = true;
         transform.position = RoundPosition(transform.position);
     }
     public void OnAccepted(int direction)
     {
+        if (_destoryed) return;
+
+        _destoryed = true;
         Game.instance.OnAccepted(this);
         Vector3 lenght = GetXZCoverage();
         Vector3 targetPoint = Vector3.zero;
+
         OnRealese();
-        colliders.ForEach(x => x.enabled = false);
+
+        gameObject.layer = 0;
+        colliders.ForEach(x => x.isTrigger = true);
 
         switch (direction)
         {
@@ -73,6 +85,17 @@ public class Block : MonoBehaviour
         direction = position - transform.position;
         direction.y = 0;
         _rigidbody.velocity = direction * speed;
+    }
+    public List<Vector3> GetParticlePoints()
+    {
+        List<Vector3> particlePoints = new List<Vector3>();
+
+        colliders.ForEach(x =>
+        {
+            particlePoints.Add(x.bounds.center);
+        });
+
+        return particlePoints;
     }
     public Vector3 GetXZCoverage()
     {
