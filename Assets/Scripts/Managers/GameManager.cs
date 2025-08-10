@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
         Level.LevelData data = JsonUtility.FromJson<Level.LevelData>(jsonFile.text);
 
         levelManager.ConstructLevel(data);
+
+        Application.targetFrameRate = 60;
     }
     private void GetDependencies()
     {
