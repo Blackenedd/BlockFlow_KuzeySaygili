@@ -84,9 +84,17 @@ public class Game : MonoBehaviour
                 if (hit.collider.CompareTag("Block"))
                 {
                     selectedBlock = hit.collider.GetComponent<Block>();
-                    selectedBlock.OnSelected();
-                    raycastSurface.SetActive(true);
-                    AudioManager.instance.PlayClick();
+                    if (selectedBlock.OnSelected())
+                    {
+                        raycastSurface.SetActive(true);
+                        AudioManager.instance.PlayClick();
+                    }
+                    else
+                    {
+                        selectedBlock = null;
+                        AudioManager.instance.PlayFailClick();
+                    }
+
                 }
             }
             else

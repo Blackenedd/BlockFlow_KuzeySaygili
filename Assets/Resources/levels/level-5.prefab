@@ -67,29 +67,36 @@ MonoBehaviour:
       blockColor: 4
       worldPosition: {x: 0, y: 0}
       Lock: 1
+      ice: 0
     - blockIndex: 2
       blockColor: 5
       worldPosition: {x: 5, y: 4}
       Lock: 1
+      ice: 0
     - blockIndex: 4
       blockColor: 6
       worldPosition: {x: 3, y: 3}
       Lock: 0
+      ice: 1
     - blockIndex: 5
       blockColor: 4
       worldPosition: {x: 5, y: 6}
       Lock: 0
+      ice: 0
     - blockIndex: 2
       blockColor: 5
       worldPosition: {x: 0, y: 5}
       Lock: 0
+      ice: 0
     - blockIndex: 7
       blockColor: 6
       worldPosition: {x: 1, y: 1}
       Lock: 0
+      ice: 0
     - blockIndex: 6
       blockColor: 5
       worldPosition: {x: 5, y: 1}
       Lock: 0
+      ice: 0
     cameraSettings: {x: -5, y: 25, z: 0}
     cameraCenter: {x: 3, y: 0, z: 3}

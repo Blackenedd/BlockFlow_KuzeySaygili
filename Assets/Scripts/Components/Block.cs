@@ -8,6 +8,7 @@ using Kuzey;
 public class Block : MonoBehaviour
 {
     public Side lockSide;
+    public int iceCount = 3;
     private Outline _outline;
     private Rigidbody _rigidbody;
     private Renderer _renderer;
@@ -17,6 +18,7 @@ public class Block : MonoBehaviour
 
     private int _color;
 
+    private bool _iced = false;
     private bool _accetped = false;
 
     private void Awake()
@@ -28,11 +30,10 @@ public class Block : MonoBehaviour
         _outline = GetComponentInChildren<Outline>(); _outline.enabled = false;
         _rigidbody = GetComponent<Rigidbody>();
         _renderer = GetComponentInChildren<MeshRenderer>();
-        _lock = GetComponentInChildren<SpriteRenderer>();
-        _lock.enabled = false;
+        _lock = GetComponentInChildren<SpriteRenderer>(); _lock.enabled = false;
         colliders = GetComponents<BoxCollider>().ToList();
     }
-    public void Construct(int color, Vector2 globalPosition, bool l)
+    public void Construct(int color, Vector2 globalPosition, bool l,bool ice)
     {
         if (l)
         {
@@ -51,16 +52,51 @@ public class Block : MonoBehaviour
         _color = color;
         _renderer.material = Resources.Load<Material>("colors/" + color);
         transform.position = Vector3.forward * globalPosition.y + Vector3.right * globalPosition.x;
+
+        if (ice) SetIce(true);
+        
+    }
+    private void SetIce(bool value)
+    {
+        if (value)
+        {
+            LevelManager.instance.onProgress.AddListener(OnProgress);
+            _renderer.material = Resources.Load<Material>("colors/ice");
+            _iced = true;
+        }
+        else
+        {
+            _iced = false;
+            _renderer.material = Resources.Load<Material>("colors/" + _color);
+            Transform pt = Instantiate(Resources.Load<GameObject>("particles/ice-explosion")).transform;
+            pt.position = transform.position + Vector3.up;
+            LevelManager.instance.onProgress.RemoveListener(OnProgress);
+        }
+    }
+    public void OnProgress()
+    {
+        if (!_iced) return;
+
+        iceCount--;
+        if (iceCount <= 0) SetIce(false);
     }
     public int GetColor()
     {
         return _color;
     }
-    public void OnSelected()
+    public bool OnSelected()
     {
+        if (_iced)
+        {
+            transform.DOComplete();
+            transform.DOShakePosition(0.2f, 0.1f, 50, 10);
+            return false;
+        } 
+
         _outline.enabled = true;
         _rigidbody.isKinematic = false;
         _rigidbody.velocity = Vector3.zero;
+        return true;
     }
     public void OnRealese()
     {

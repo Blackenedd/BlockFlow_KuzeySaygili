@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private Transform blockContainer;
     [HideInInspector] public UnityEvent<bool> endGameEvent = new UnityEvent<bool>();
+    [HideInInspector] public UnityEvent onProgress = new UnityEvent();
 
     private List<Block> blocks = new List<Block>();
     private List<Wall> walls = new List<Wall>();
@@ -20,8 +21,6 @@ public class LevelManager : MonoBehaviour
 
     private float targetTime;
     private float currentTime;
-
-    private bool started = false;
     private bool finished = false;
 
     public static LevelManager instance;
@@ -37,6 +36,7 @@ public class LevelManager : MonoBehaviour
     }
     public void OnProgress(int count = 1)
     {
+        onProgress.Invoke();
         if (finished) return;
 
         currentCount += count;
@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour
 
         level.information.blocks.ForEach(x =>
         {
-            SpawnBlock(x.blockIndex, x.blockColor, x.worldPosition,x.Lock);
+            SpawnBlock(x.blockIndex, x.blockColor, x.worldPosition,x.Lock,x.ice);
         });
 
         level.information.walls.ForEach(x =>
@@ -83,10 +83,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void SpawnBlock(int index, int color,Vector2 worldPosition,bool l)
+    private void SpawnBlock(int index, int color,Vector2 worldPosition,bool l,bool ice)
     {
         Block block = Instantiate(Resources.Load<Block>(BLOCK_DATA + index),blockContainer);
-        block.Construct(color, worldPosition,l);
+        block.Construct(color, worldPosition,l,ice);
         blocks.Add(block);
     }
 }

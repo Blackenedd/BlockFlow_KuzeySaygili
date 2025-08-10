@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockSide: 1
+  iceCount: 3
 --- !u!1001 &9016555464559525260
 PrefabInstance:
   m_ObjectHideFlags: 0
