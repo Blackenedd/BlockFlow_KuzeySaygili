@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockSide: 1
-  iceCount: 3
+  iceCount: 5
 --- !u!54 &7090227446619241575
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,44 +1,59 @@
 {
-    "gridWidth": 7,
-    "gridHeight": 7,
-    "hasTime": false,
-    "time": 0,
+    "gridWidth": 8,
+    "gridHeight": 8,
+    "hasTime": true,
+    "time": 60,
     "walls": [
         {
-            "orderIndex": 12,
+            "orderIndex": 5,
             "lenght": 2,
-            "color": 5
+            "color": 1
         },
         {
-            "orderIndex": 15,
+            "orderIndex": 9,
             "lenght": 2,
             "color": 4
         },
         {
-            "orderIndex": 2,
-            "lenght": 2,
+            "orderIndex": 13,
+            "lenght": 3,
+            "color": 5
+        },
+        {
+            "orderIndex": 20,
+            "lenght": 3,
             "color": 6
         },
         {
-            "orderIndex": 22,
-            "lenght": 2,
+            "orderIndex": 24,
+            "lenght": 3,
+            "color": 6
+        },
+        {
+            "orderIndex": 17,
+            "lenght": 1,
+            "color": 3
+        },
+        {
+            "orderIndex": 12,
+            "lenght": 1,
             "color": 0
         }
     ],
     "blocks": [
         {
-            "blockIndex": 4,
-            "blockColor": 4,
+            "blockIndex": 1,
+            "blockColor": 0,
             "worldPosition": {
-                "x": 1.0,
-                "y": 1.0
+                "x": 4.0,
+                "y": 0.0
             },
             "Lock": true,
             "ice": false
         },
         {
             "blockIndex": 2,
-            "blockColor": 5,
+            "blockColor": 1,
             "worldPosition": {
                 "x": 5.0,
                 "y": 4.0
@@ -48,7 +63,7 @@
         },
         {
             "blockIndex": 4,
-            "blockColor": 6,
+            "blockColor": 4,
             "worldPosition": {
                 "x": 3.0,
                 "y": 3.0
@@ -58,7 +73,7 @@
         },
         {
             "blockIndex": 5,
-            "blockColor": 4,
+            "blockColor": 3,
             "worldPosition": {
                 "x": 5.0,
                 "y": 6.0
@@ -68,7 +83,7 @@
         },
         {
             "blockIndex": 2,
-            "blockColor": 5,
+            "blockColor": 4,
             "worldPosition": {
                 "x": 0.0,
                 "y": 5.0
@@ -77,11 +92,11 @@
             "ice": false
         },
         {
-            "blockIndex": 4,
-            "blockColor": 0,
+            "blockIndex": 7,
+            "blockColor": 5,
             "worldPosition": {
-                "x": 2.0,
-                "y": 2.0
+                "x": 1.0,
+                "y": 1.0
             },
             "Lock": false,
             "ice": false
@@ -99,12 +114,12 @@
     ],
     "cameraSettings": {
         "x": -5.0,
-        "y": 25.0,
+        "y": 30.0,
         "z": 0.0
     },
     "cameraCenter": {
-        "x": 3.0,
+        "x": 3.5,
         "y": 0.0,
-        "z": 3.0
+        "z": 3.5
     }
 }

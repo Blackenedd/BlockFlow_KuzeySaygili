@@ -1,0 +1,170 @@
+{
+    "gridWidth": 7,
+    "gridHeight": 7,
+    "hasTime": true,
+    "time": 120,
+    "walls": [
+        {
+            "orderIndex": 0,
+            "lenght": 2,
+            "color": 0
+        },
+        {
+            "orderIndex": 2,
+            "lenght": 1,
+            "color": 1
+        },
+        {
+            "orderIndex": 3,
+            "lenght": 1,
+            "color": 2
+        },
+        {
+            "orderIndex": 4,
+            "lenght": 1,
+            "color": 3
+        },
+        {
+            "orderIndex": 5,
+            "lenght": 2,
+            "color": 4
+        },
+        {
+            "orderIndex": 7,
+            "lenght": 2,
+            "color": 5
+        },
+        {
+            "orderIndex": 9,
+            "lenght": 1,
+            "color": 6
+        },
+        {
+            "orderIndex": 10,
+            "lenght": 1,
+            "color": 1
+        },
+        {
+            "orderIndex": 11,
+            "lenght": 1,
+            "color": 2
+        },
+        {
+            "orderIndex": 12,
+            "lenght": 2,
+            "color": 3
+        }
+    ],
+    "blocks": [
+        {
+            "blockIndex": 1,
+            "blockColor": 1,
+            "worldPosition": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 1,
+            "blockColor": 2,
+            "worldPosition": {
+                "x": 5.0,
+                "y": 4.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 1,
+            "blockColor": 3,
+            "worldPosition": {
+                "x": 3.0,
+                "y": 3.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 1,
+            "blockColor": 4,
+            "worldPosition": {
+                "x": 2.0,
+                "y": 4.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 1,
+            "blockColor": 5,
+            "worldPosition": {
+                "x": 0.0,
+                "y": 5.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 1,
+            "blockColor": 6,
+            "worldPosition": {
+                "x": 1.0,
+                "y": 1.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 1,
+            "blockColor": 5,
+            "worldPosition": {
+                "x": 5.0,
+                "y": 1.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 4,
+            "blockColor": 0,
+            "worldPosition": {
+                "x": 3.0,
+                "y": 1.0
+            },
+            "Lock": false,
+            "ice": true
+        },
+        {
+            "blockIndex": 2,
+            "blockColor": 3,
+            "worldPosition": {
+                "x": 0.0,
+                "y": 3.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 6,
+            "blockColor": 4,
+            "worldPosition": {
+                "x": 4.0,
+                "y": 3.0
+            },
+            "Lock": false,
+            "ice": true
+        }
+    ],
+    "cameraSettings": {
+        "x": -5.0,
+        "y": 25.0,
+        "z": 0.0
+    },
+    "cameraCenter": {
+        "x": 3.0,
+        "y": 0.0,
+        "z": 3.0
+    }
+}

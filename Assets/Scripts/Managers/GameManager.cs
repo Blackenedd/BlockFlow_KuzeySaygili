@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     [Header("CURRENCY"), Space(5)]
     public int money = 0;
-
+    public Level testLevel;
     public LevelManager levelManager;
 
     #region Singleton
@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
         }
 
         Level.LevelData data = JsonUtility.FromJson<Level.LevelData>(jsonFile.text);
-
-        levelManager.ConstructLevel(data);
+        if (testLevel != null) levelManager.ConstructLevel(testLevel.information);
+        else levelManager.ConstructLevel(data);
 
         Application.targetFrameRate = 60;
     }

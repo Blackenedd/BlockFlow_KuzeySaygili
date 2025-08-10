@@ -1392,9 +1392,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoLevel: 1
   level: -1
-  levelCount: 5
-  levelLoopFrom: 1
+  levelCount: 7
+  levelLoopFrom: 2
   money: 0
+  testLevel: {fileID: 0}
   levelManager: {fileID: 1938944050}
 --- !u!114 &132318334
 MonoBehaviour:
@@ -5362,7 +5363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &573845869
