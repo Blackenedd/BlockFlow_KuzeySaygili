@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.IO;
 
 public class Level : MonoBehaviour
 {
@@ -37,5 +38,23 @@ public class Level : MonoBehaviour
         public int orderIndex;
         public int lenght;
         public int color;
+    }
+
+    [ContextMenu("Export Level to JSON")]
+    public void ExportLevel()
+    {
+        string json = JsonUtility.ToJson(information, true);
+
+        // Levels klasörü (Assets/Resources/Levels)
+        string folderPath = Application.dataPath + "/Resources/Levels";
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        string filePath = folderPath + $"/" + gameObject.name + ".json";
+        File.WriteAllText(filePath, json);
+
+        Debug.Log($"Level JSON olarak kaydedildi: {filePath}");
     }
 }

@@ -1394,12 +1394,6 @@ MonoBehaviour:
   level: -1
   levelCount: 5
   levelLoopFrom: 1
-  levels:
-  - {fileID: 3948057405593878005, guid: 2cc9fca0b4b014d39b46dc54b7cb9676, type: 3}
-  - {fileID: 3948057405593878005, guid: 719d5332a7a74475389038183f124f67, type: 3}
-  - {fileID: 3948057405593878005, guid: 0b56f5117d45743a19b4dd905fb1e58c, type: 3}
-  - {fileID: 967434269321951529, guid: fde849b58bbdf447d858836797f62e28, type: 3}
-  - {fileID: 967434269321951529, guid: 24d59747cad4642cda0506ec63c6b705, type: 3}
   money: 0
   levelManager: {fileID: 1938944050}
 --- !u!114 &132318334

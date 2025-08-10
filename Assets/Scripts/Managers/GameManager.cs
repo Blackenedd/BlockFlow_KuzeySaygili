@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     public int levelCount = 10;
     public int levelLoopFrom = 3;
 
-    public List<Level> levels;
-
     [Header("CURRENCY"), Space(5)]
     public int money = 0;
 
@@ -36,7 +34,16 @@ public class GameManager : MonoBehaviour
         int levelIndex = level;
         while (levelIndex > levelCount) levelIndex = levelIndex - levelCount + (levelLoopFrom - 1);
 
-        levelManager.ConstructLevel(levels[levelIndex - 1]);
+        TextAsset jsonFile = Resources.Load<TextAsset>($"Levels/level-"+levelIndex);
+        if (jsonFile == null)
+        {
+            Debug.LogError($"Level bulunamadı!");
+            return;
+        }
+
+        Level.LevelData data = JsonUtility.FromJson<Level.LevelData>(jsonFile.text);
+
+        levelManager.ConstructLevel(data);
     }
     private void GetDependencies()
     {

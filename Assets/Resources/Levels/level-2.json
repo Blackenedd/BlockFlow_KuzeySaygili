@@ -1,0 +1,95 @@
+{
+    "gridWidth": 5,
+    "gridHeight": 5,
+    "hasTime": false,
+    "time": 0,
+    "walls": [
+        {
+            "orderIndex": 7,
+            "lenght": 2,
+            "color": 1
+        },
+        {
+            "orderIndex": 15,
+            "lenght": 2,
+            "color": 2
+        },
+        {
+            "orderIndex": 3,
+            "lenght": 2,
+            "color": 3
+        },
+        {
+            "orderIndex": 1,
+            "lenght": 1,
+            "color": 1
+        },
+        {
+            "orderIndex": 18,
+            "lenght": 2,
+            "color": 4
+        }
+    ],
+    "blocks": [
+        {
+            "blockIndex": 1,
+            "blockColor": 1,
+            "worldPosition": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 4,
+            "blockColor": 2,
+            "worldPosition": {
+                "x": 2.0,
+                "y": 1.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 1,
+            "blockColor": 3,
+            "worldPosition": {
+                "x": 3.0,
+                "y": 2.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 5,
+            "blockColor": 4,
+            "worldPosition": {
+                "x": 2.0,
+                "y": 3.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 2,
+            "blockColor": 1,
+            "worldPosition": {
+                "x": 0.0,
+                "y": 3.0
+            },
+            "Lock": false,
+            "ice": false
+        }
+    ],
+    "cameraSettings": {
+        "x": -5.0,
+        "y": 20.0,
+        "z": 0.0
+    },
+    "cameraCenter": {
+        "x": 2.0,
+        "y": 0.0,
+        "z": 2.0
+    }
+}

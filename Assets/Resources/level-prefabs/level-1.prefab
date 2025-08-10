@@ -64,13 +64,16 @@ MonoBehaviour:
       blockColor: 1
       worldPosition: {x: 0, y: 0}
       Lock: 0
+      ice: 0
     - blockIndex: 1
       blockColor: 2
       worldPosition: {x: 2, y: 2}
       Lock: 0
+      ice: 0
     - blockIndex: 1
       blockColor: 3
       worldPosition: {x: 1, y: 2}
       Lock: 0
+      ice: 0
     cameraSettings: {x: -5, y: 20, z: 0}
     cameraCenter: {x: 1.5, y: 0, z: 1.5}

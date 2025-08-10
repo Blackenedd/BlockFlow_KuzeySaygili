@@ -1,0 +1,110 @@
+{
+    "gridWidth": 7,
+    "gridHeight": 7,
+    "hasTime": false,
+    "time": 0,
+    "walls": [
+        {
+            "orderIndex": 12,
+            "lenght": 2,
+            "color": 5
+        },
+        {
+            "orderIndex": 16,
+            "lenght": 1,
+            "color": 4
+        },
+        {
+            "orderIndex": 2,
+            "lenght": 2,
+            "color": 5
+        },
+        {
+            "orderIndex": 22,
+            "lenght": 3,
+            "color": 6
+        }
+    ],
+    "blocks": [
+        {
+            "blockIndex": 1,
+            "blockColor": 4,
+            "worldPosition": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "Lock": true,
+            "ice": false
+        },
+        {
+            "blockIndex": 2,
+            "blockColor": 5,
+            "worldPosition": {
+                "x": 5.0,
+                "y": 4.0
+            },
+            "Lock": true,
+            "ice": false
+        },
+        {
+            "blockIndex": 4,
+            "blockColor": 6,
+            "worldPosition": {
+                "x": 3.0,
+                "y": 3.0
+            },
+            "Lock": false,
+            "ice": true
+        },
+        {
+            "blockIndex": 5,
+            "blockColor": 4,
+            "worldPosition": {
+                "x": 5.0,
+                "y": 6.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 2,
+            "blockColor": 5,
+            "worldPosition": {
+                "x": 0.0,
+                "y": 5.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 7,
+            "blockColor": 6,
+            "worldPosition": {
+                "x": 1.0,
+                "y": 1.0
+            },
+            "Lock": false,
+            "ice": false
+        },
+        {
+            "blockIndex": 6,
+            "blockColor": 5,
+            "worldPosition": {
+                "x": 5.0,
+                "y": 1.0
+            },
+            "Lock": false,
+            "ice": false
+        }
+    ],
+    "cameraSettings": {
+        "x": -5.0,
+        "y": 25.0,
+        "z": 0.0
+    },
+    "cameraCenter": {
+        "x": 3.0,
+        "y": 0.0,
+        "z": 3.0
+    }
+}

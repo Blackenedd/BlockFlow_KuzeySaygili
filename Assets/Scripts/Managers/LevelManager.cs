@@ -48,19 +48,19 @@ public class LevelManager : MonoBehaviour
             AudioManager.instance.PlaySuccess();
         }
     }
-    public void ConstructLevel(Level level)
+    public void ConstructLevel(Level.LevelData level)
     {
-        GridManager.instance.GenerateGrid(level.information.gridWidth, level.information.gridHeight);
+        GridManager.instance.GenerateGrid(level.gridWidth, level.gridHeight);
 
         walls = GridManager.instance.GetWalls();
-        targetCount = level.information.blocks.Count;
+        targetCount = level.blocks.Count;
 
-        level.information.blocks.ForEach(x =>
+        level.blocks.ForEach(x =>
         {
             SpawnBlock(x.blockIndex, x.blockColor, x.worldPosition,x.Lock,x.ice);
         });
 
-        level.information.walls.ForEach(x =>
+        level.walls.ForEach(x =>
         {
             walls[x.orderIndex].Construct(x.lenght, x.color);
 
@@ -68,13 +68,13 @@ public class LevelManager : MonoBehaviour
             if (x.lenght > 2) walls[x.orderIndex + 2].Close(walls[x.orderIndex].GetSideInformation());
         });
 
-        CameraManager.instance.SetOffset(level.information.cameraCenter);
-        CameraManager.instance.SetValues(level.information.cameraSettings);
+        CameraManager.instance.SetOffset(level.cameraCenter);
+        CameraManager.instance.SetValues(level.cameraSettings);
 
-        if (level.information.hasTime)
+        if (level.hasTime)
         {
             UIManager.instance.gamePanel.OpenTimer();
-            targetTime = level.information.time;
+            targetTime = level.time;
             currentTime = targetTime;
             DOTween.To(() => currentTime, x => currentTime = x, 0f, targetTime).OnUpdate(() =>
             {
